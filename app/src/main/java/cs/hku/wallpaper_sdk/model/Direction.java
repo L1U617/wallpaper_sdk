@@ -28,7 +28,12 @@ public class Direction {
     @NonNull
     @Override
     public String toString() {
-        return "("+x+", "+y+", "+z+")";
+        return x+", "+y+", "+z;
+    }
+
+    public static Direction fromString(String str) {
+        String[] s = str.split(",");
+        return new Direction(Double.parseDouble(s[0]), Double.parseDouble(s[1]), Double.parseDouble(s[2]));
     }
 }
 

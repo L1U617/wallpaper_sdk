@@ -8,13 +8,14 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.util.Log;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.Arrays;
 
 import cs.hku.wallpaper_sdk.R;
 import cs.hku.wallpaper_sdk.model.Direction;
-
+import cs.hku.wallpaper_sdk.model.Store;
 
 public class WallPaperOrientationService {
     private static int current = -1;
@@ -27,13 +28,14 @@ public class WallPaperOrientationService {
     private static float currentDirection = 0;
     private static float[] accelerometerValues = new float[3];
     private static float[] magneticFieldValues = new float[3];
-    private static WallpaperManager wallpaperManager;
+    public static WallpaperManager wallpaperManager;
+    private static Direction oldDirection = new Direction(0, 1, 0);
+
 
     final static SensorEventListener myListener = new SensorEventListener() {
         public void onSensorChanged(SensorEvent sensorEvent) {
             if (sensorEvent.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
                 magneticFieldValues = sensorEvent.values.clone();
-//                Log.i(TAG, "onSensorChanged: "+Arrays.toString(sensorEvent.values));
             }
             if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
                 accelerometerValues = sensorEvent.values.clone();
@@ -58,23 +60,31 @@ public class WallPaperOrientationService {
         sm.registerListener(myListener, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
+    private static double calCosine(Direction d1, Direction d2){
+        double d1_dot_d2 = d1.getX() * d2.getX() + d1.getY() * d2.getY() + d1.getZ() * d2.getZ();
+        double len_d1 = Math.sqrt(Math.pow(d1.getX(), 2) + Math.pow(d1.getY(), 2) + Math.pow(d1.getZ(), 2));
+        double len_d2 = Math.sqrt(Math.pow(d2.getX(), 2) + Math.pow(d2.getY(), 2) + Math.pow(d2.getZ(), 2));
+        return d1_dot_d2 / (len_d1 * len_d2);
+    }
     private static void calculateOrientation() throws IOException {
         float[] values = new float[3];
         float[] Res = new float[9];
         SensorManager.getRotationMatrix(Res, null, accelerometerValues, magneticFieldValues);
+        System.out.println(Arrays.toString(Res));
         SensorManager.getOrientation(Res, values);
-//        Log.i(TAG, "calculateOrientation: 旋转矩阵" + Res);
-//        for (int i = 0; i < 3; i++) {
-//            for (int j = 0; j < 3; j++) {
-//                System.out.print(Res[i*3 + j] + ", ");
-//            }
-//            System.out.println();
-//        }
+        // 得到当前相对于世界坐标系的空间向量
         Direction direction = change(Res);
-        Log.i(TAG, "calculateOrientation: "+direction);
-        changeWallPaper(direction);
-    }
 
+        // 非测试情况下这行代码注释掉
+//        Store.storeDirectionWithMatrix(direction, Res);
+
+        double cosine = calCosine(oldDirection, direction);
+        if (cosine < 0.5) {
+            double[] d = {direction.getX(), direction.getY(), direction.getZ()};
+            Image.fetchImage(d);
+            oldDirection = direction;
+        }
+    }
 
     /**
      * 新的坐标系---android官方规定的世界坐标系
@@ -139,6 +149,9 @@ public class WallPaperOrientationService {
         float x = 0;
         float y = 0;
         float z = -1;
-        return new Direction(R[0]*x + R[1]*y + R[2]*z, R[3]*x + R[4]*y + R[5]*z, R[6]*x + R[7]*y + R[8]*z);
+
+        return new Direction(new BigDecimal(R[0]*x + R[1]*y + R[2]*z).setScale(1,BigDecimal.ROUND_HALF_UP).doubleValue(),
+                new BigDecimal(R[3]*x + R[4]*y + R[5]*z).setScale(1,BigDecimal.ROUND_HALF_UP).doubleValue()
+                , new BigDecimal(R[6]*x + R[7]*y + R[8]*z).setScale(1,BigDecimal.ROUND_HALF_UP).doubleValue());
     }
 }
