@@ -40,20 +40,33 @@
 
         </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.7"
+            android:layout_weight="0.75"
             android:background="@drawable/listbackground">
-        <!--需要在这里添加gridview或者listview展示图片-->
+        <!--Grid View-->
+            <GridView
+                android:id="@+id/grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:horizontalSpacing="30dp"
+                android:verticalSpacing="20dp"
+                android:numColumns='2'
+                android:scrollbars="none"
+                />
 
-        </LinearLayout>
+
+        </RelativeLayout>
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.15">
+            android:layout_weight="0.1">
             <Button
                 android:id="@+id/btn_add"
                 android:layout_width="70dp"
