@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/img_logo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:background="@drawable/maintop"
+            android:orientation="horizontal" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.05"
+            >
+            <EditText
+                android:id="@+id/txt_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textSize="50px"
+                android:layout_marginLeft="150dp"
+                android:textCursorDrawable="@null"
+                android:background="@drawable/roundrect"/>
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="20dp"
+                android:layout_height="50px"
+                android:layout_toRightOf="@id/txt_search"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/btn_search"
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:background="@drawable/listbackground">
+        <!--需要在这里添加gridview或者listview展示图片-->
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15">
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/bplus"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+            <Button
+                android:layout_width="45dp"
+                android:layout_height="50dp"
+                android:layout_toLeftOf="@+id/btn_add"
+                android:layout_marginRight="60dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bcus" />
+            <Button
+                android:layout_width="45dp"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@+id/btn_add"
+                android:layout_marginLeft="60dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bfav" />
+
+        </RelativeLayout>
+
+
+
+</LinearLayout>

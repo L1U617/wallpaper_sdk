@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/lback"
+    tools:context=".MainActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            >
+            <ImageView
+                android:layout_height="150dp"
+                android:layout_width="150dp"
+                android:src="@drawable/logo" />
+        </LinearLayout>
+
+        <!--Log in-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="100dp"
+            android:background="@drawable/roundrect"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:textSize="50px"
+                android:textColor="#453075"
+                android:text="Sign up"/>
+
+            <!--user name-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="25dp"
+                android:textSize="40px"
+                android:text="User name"/>
+            <EditText
+                android:id="@+id/txt_set_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="30dp"
+                android:textSize="40px"
+                android:textCursorDrawable="@null"
+                android:layout_centerHorizontal="true"/>
+
+            <!--Password-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="110dp"
+                android:layout_marginLeft="25dp"
+                android:textSize="40px"
+                android:text="Password"/>
+            <EditText
+                android:id="@+id/txt_set_pw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="120dp"
+                android:layout_marginLeft="30dp"
+                android:textSize="40px"
+                android:textCursorDrawable="@null"
+                android:inputType="textPassword"
+                android:layout_centerHorizontal="true"/>
+
+            <!--Confirm password-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="170dp"
+                android:layout_marginLeft="25dp"
+                android:textSize="40px"
+                android:text="Confrim Password"/>
+            <EditText
+                android:id="@+id/txt_confirm_pw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="180dp"
+                android:layout_marginLeft="30dp"
+                android:textSize="40px"
+                android:textCursorDrawable="@null"
+                android:inputType="textPassword"
+                android:layout_centerHorizontal="true"/>
+
+            <Button
+                android:id="@+id/btn_sign"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="230dp"
+                android:layout_marginLeft="30dp"
+                android:textStyle="bold"
+                android:background="@drawable/btn_rountrect"
+                android:textColor="#ffffff"
+                android:layout_centerHorizontal="true"
+                android:text="SIGN UP"/>
+
+            <!--new user-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="280dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="30dp"
+                android:textSize="30px"
+                android:text="Already have an Acount?"/>
+
+            <!--Sign up-->
+            <TextView
+                android:id='@+id/txt_signup'
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="280dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="160dp"
+                android:textColor="#3366ff"
+                android:textSize="30px"
+                android:text="Log in"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</ScrollView>
