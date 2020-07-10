@@ -14,7 +14,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.homepage);
+        /*
         Button btn = findViewById(R.id.back_to_home);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -26,5 +27,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         WallPaperOrientationService.StartOrientationListener(this);
+
+         */
     }
 }
